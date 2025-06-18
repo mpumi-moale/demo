@@ -12,6 +12,8 @@ $note = $db->query('select * from notes where id = :id', [
     'id' => $_GET['id']
 ])->fetch();
 
+dd($note);
+
 
 if (!$note) {
     abort();
