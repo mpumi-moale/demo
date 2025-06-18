@@ -1,18 +1,6 @@
 <?php
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-
-// This router does not work for the about page and contact page
-$routes = [
-    '/websites/demo/index.php' => 'controller/index.php',
-    '/websites/demo/about.php' => 'controller/about.php',
-    '/websites/demo/notes.php' => 'controller/notes.php',
-    '/websites/demo/note.php' => 'controller/note.php',
-    '/websites/demo/contact.php' => 'controller/contact.php'
-    
-];
-
+$routes = require 'routes.php';
 function routeToController($uri, $routes) {
     if (array_key_exists($uri, $routes)) {
         require $routes[$uri];
@@ -26,6 +14,8 @@ function abort($code = 404) {
     require "views/{$code}.php";
     die();
 }
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 routeToController($uri, $routes);
 

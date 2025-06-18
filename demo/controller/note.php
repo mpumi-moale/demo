@@ -14,7 +14,7 @@ $note = $db->query('select * from notes where id = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-authorize($note['user_id'] != $currentUserId);
+authorize($note['user_id'] === $currentUserId);
 
 
 

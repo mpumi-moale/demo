@@ -45,7 +45,7 @@ class Database {
         return $result;
     }
 
-    public function fetchAll() {
+    public function get() {
 
         return $this->statement->fetchAll();
     }
