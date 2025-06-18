@@ -8,19 +8,16 @@ $config = require 'config.php';
 $db = new Database($config['database']);
 
 $heading = 'Note';
+$currentUserId = 1;
 
 $note = $db->query('select * from notes where id = :id', [
     'id' => $_GET['id']
-])->fetch();
-
-dd($note);
+])->find();
 
 
 if (!$note) {
     abort();
 }
-
-$currentUserId = 1;
 
 
 if ($note['user_id'] != $currentUserId ) {
